@@ -7,5 +7,10 @@
         <service id="gearman.server_collection" class="Dmank\gearman\ServerCollection" />
 
         <service id="gearman.server.abstract" abstract="true" public="false" class="Dmank\gearman\Server"/>
+
+        <service id="gearman.jobrepository.default" class="dmank\gearman\JobCollection" />
+        <service id="gearman.jobrepository" alias="gearman.jobrepository.default" />
+
+        <service id="gearman.event_dispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher" />
     </services>
 </container>
