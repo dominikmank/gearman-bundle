@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="gearman.dispatcher" class="Dmank\gearman\Client">
+            <argument type="service" id="gearman.server_collection" />
+        </service>
+        <service id="gearman.server_collection" class="Dmank\gearman\ServerCollection" />
+
+        <service id="gearman.server.abstract" abstract="true" public="false" class="Dmank\gearman\Server"/>
+    </services>
+</container>
