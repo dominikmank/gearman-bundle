@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
                         ->integerNode('port')->end()
                     ->end()
                 ->end()
+                ->scalorNode('default_repository')->defaultValue('gearman.repository.default')->end()
             ->end();
 
         return $treeBuilder;
