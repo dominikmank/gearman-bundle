@@ -7,7 +7,7 @@ use Dmank\GearmanBundle\Event\GearmanDispatchEvent;
 use Dmank\GearmanBundle\Event\GearmanEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class Dispatcher implements DisptacherInterface
+class Dispatcher implements DispatcherInterface
 {
     /**
      * @var Client

@@ -1,7 +1,7 @@
 <?php
 namespace Dmank\GearmanBundle\Service;
 
-interface DisptacherInterface
+interface DispatcherInterface
 {
     const PRIORITY_LOW = 0;
     const PRIORITY_NORMAL = 1;
