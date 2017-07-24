@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d7828b49203540e20f283320352c3b6",
+    "content-hash": "9486c33868bd8f8810cc7170f67b06fa",
     "packages": [
         {
             "name": "dmank/gearman",
-            "version": "2.1.1",
+            "version": "dev-reworked-jobhandler",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dominikmank/gearman.git",
-                "reference": "f6ce3ade1ba68e7c752812e482250596e9bc8c5f"
+                "reference": "303e105cd1b7cf994425452f291dcb99ccdc576c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dominikmank/gearman/zipball/f6ce3ade1ba68e7c752812e482250596e9bc8c5f",
-                "reference": "f6ce3ade1ba68e7c752812e482250596e9bc8c5f",
+                "url": "https://api.github.com/repos/dominikmank/gearman/zipball/303e105cd1b7cf994425452f291dcb99ccdc576c",
+                "reference": "303e105cd1b7cf994425452f291dcb99ccdc576c",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "php",
                 "worker"
             ],
-            "time": "2017-07-14T18:05:18+00:00"
+            "time": "2017-07-24 12:30:27"
         },
         {
             "name": "psr/container",
@@ -2620,7 +2620,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dmank/gearman": 0,
+        "dmank/gearman": 20,
         "symfony/dependency-injection": 0,
         "symfony/config": 0,
         "phpunit/phpunit": 0,
