@@ -1,4 +1,5 @@
 <?php
+
 namespace Dmank\GearmanBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -7,15 +8,26 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class GearmanJobPass implements CompilerPassInterface
 {
+    private $repository;
+    private $tagName;
+
+    public function __construct($tagName = 'gearman.job', $repository = 'default')
+    {
+        $this->tagName = $tagName;
+        $this->repository = $repository;
+    }
+
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('gearman.repository.default')) {
+        $repositoryDefinitionName = sprintf('gearman.repository.%s', $this->repository);
+
+        if (!$container->has($repositoryDefinitionName)) {
             return;
         }
 
-        $definition = $container->findDefinition('gearman.repository.default');
+        $definition = $container->findDefinition($repositoryDefinitionName);
 
-        $jobs = $container->findTaggedServiceIds('gearman.job');
+        $jobs = $container->findTaggedServiceIds($this->tagName);
 
         foreach ($jobs as $id => $tags) {
             $definition->addMethodCall('addJob', array(new Reference($id)));
