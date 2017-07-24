@@ -18,6 +18,7 @@ class GearmanExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
+
         if (isset($config['servers'])) {
             foreach ($config['servers'] as $serverName => $server) {
                 $definitionName = sprintf('gearman.server.%s', $serverName);

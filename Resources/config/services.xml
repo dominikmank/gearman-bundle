@@ -8,7 +8,7 @@
 
         <service id="gearman.dispatcher" class="Dmank\GearmanBundle\Service\Dispatcher">
             <argument type="service" id="gearman.client" />
-            <argument type="service" id="gearman.event_dispatcher" />
+            <argument type="service" id="event_dispatcher" />
         </service>
         <service id="gearman.server_collection" class="dmank\gearman\ServerCollection" />
 
@@ -16,6 +16,18 @@
         <service id="gearman.jobrepository.default" class="dmank\gearman\JobCollection" />
         <service id="gearman.jobrepository" alias="gearman.jobrepository.default" />
 
-        <service id="gearman.event_dispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher" />
+        <service id="monolog.logger.gearman" parent="monolog.logger_prototype">
+            <argument index="0">gearman</argument>
+            <call method="pushHandler">
+                <argument type="service">
+                    <service class="Symfony\Bridge\Monolog\Handler\ConsoleHandler" /> <!-- <argument type="service" id="monolog.handler.console" />-->
+                </argument>
+            </call>
+            <call method="pushProcessor">
+                <argument type="service">
+                    <service class="Monolog\Processor\ProcessIdProcessor" />
+                </argument>
+            </call>
+        </service>
     </services>
 </container>
