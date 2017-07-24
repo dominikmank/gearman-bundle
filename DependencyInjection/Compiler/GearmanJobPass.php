@@ -19,7 +19,7 @@ class GearmanJobPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        $repositoryDefinitionName = sprintf('gearman.repository.%s', $this->repository);
+        $repositoryDefinitionName = sprintf('gearman.jobrepository.%s', $this->repository);
 
         if (!$container->has($repositoryDefinitionName)) {
             return;
@@ -30,7 +30,7 @@ class GearmanJobPass implements CompilerPassInterface
         $jobs = $container->findTaggedServiceIds($this->tagName);
 
         foreach ($jobs as $id => $tags) {
-            $definition->addMethodCall('addJob', array(new Reference($id)));
+            $definition->addMethodCall('add', array(new Reference($id)));
         }
     }
 }

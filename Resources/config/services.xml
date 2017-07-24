@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <container xmlns="http://symfony.com/schema/dic/services">
     <services>
-        <service id="gearman.client" class="Dmank\gearman\Client" public="false">
+        <service id="gearman.client" class="dmank\gearman\Client" public="false">
             <argument type="service" id="gearman.server_collection" />
         </service>
-        <service id="gearman.server.abstract" abstract="true" public="false" class="Dmank\gearman\Server"/>
+        <service id="gearman.server.abstract" abstract="true" public="false" class="dmank\gearman\Server"/>
 
         <service id="gearman.dispatcher" class="Dmank\GearmanBundle\Service\Dispatcher">
             <argument type="service" id="gearman.client" />
             <argument type="service" id="gearman.event_dispatcher" />
         </service>
-        <service id="gearman.server_collection" class="Dmank\gearman\ServerCollection" />
+        <service id="gearman.server_collection" class="dmank\gearman\ServerCollection" />
 
 
         <service id="gearman.jobrepository.default" class="dmank\gearman\JobCollection" />
