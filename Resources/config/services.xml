@@ -8,8 +8,10 @@
 
         <service id="gearman.dispatcher" class="Dmank\GearmanBundle\Service\Dispatcher">
             <argument type="service" id="gearman.client" />
-            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="gearman.event_dispatcher" />
         </service>
+
+        <service id="gearman.event_dispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher" />
 
         <service id="gearman.server_collection" class="dmank\gearman\ServerCollection" />
         <service id="gearman.jobrepository.default" class="dmank\gearman\JobCollection" />
@@ -20,12 +22,22 @@
             <tag name="gearman.event_subscriber" />
         </service>
 
+        <service id="gearman.event_subscriber.time_limit" class="dmank\gearman\event\subscriber\MaxRuntime">
+            <argument type="string">%gearman.worker.time_limit%</argument>
+            <argument type="service" id="monolog.logger.gearman" />
+            <tag name="gearman.event_subscriber" />
+        </service>
+
+        <service id="gearman.event_subscriber.memory_limit" class="dmank\gearman\event\subscriber\MemoryLimit">
+            <argument type="string">%gearman.worker.memory_limit%</argument>
+            <argument type="service" id="monolog.logger.gearman" />
+            <tag name="gearman.event_subscriber" />
+        </service>
+
         <service id="monolog.logger.gearman" parent="monolog.logger_prototype">
             <argument index="0">gearman</argument>
             <call method="pushHandler">
-                <argument type="service">
-                    <service class="Symfony\Bridge\Monolog\Handler\ConsoleHandler" /> <!-- <argument type="service" id="monolog.handler.console" />-->
-                </argument>
+                <argument type="service" id="monolog.handler.console" />
             </call>
             <call method="pushProcessor">
                 <argument type="service">

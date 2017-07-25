@@ -2,6 +2,7 @@
 namespace Dmank\GearmanBundle\Tests\DependencyInjection;
 
 use Dmank\GearmanBundle\DependencyInjection\GearmanExtension;
+use Symfony\Bundle\MonologBundle\DependencyInjection\MonologExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class GearmanExtensionTest extends \PHPUnit_Framework_TestCase
@@ -13,6 +14,9 @@ class GearmanExtensionTest extends \PHPUnit_Framework_TestCase
 
         $loader = new GearmanExtension();
         $loader->load($config, $containerBuilder);
+
+        $otherLoader = new MonologExtension();
+        $otherLoader->load([], $containerBuilder);
 
         $containerBuilder->compile();
 
