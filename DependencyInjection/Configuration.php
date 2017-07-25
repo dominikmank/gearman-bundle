@@ -11,20 +11,26 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
 
         $rootNode = $treeBuilder->root('gearman');
-
         $rootNode
             ->children()
                 ->arrayNode('servers')
-                    ->requiresAtLeastOneElement()
                     ->useAttributeAsKey('name')
                     ->prototype('array')
-                    ->children()
-                        ->scalarNode('host')->end()
-                        ->integerNode('port')->end()
+                        ->children()
+                            ->scalarNode('host')->end()
+                            ->integerNode('port')->end()
+                        ->end()
                     ->end()
                 ->end()
-            ->end()
-                ->scalarNode('default_repository')->defaultValue('gearman.repository.default')->end()
+                ->arrayNode('worker')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('time_limit')->defaultValue(null)->end()
+                        ->scalarNode('memory_limit')->defaultValue('-1')->end()
+                    ->end()
+                ->end()
+            ->scalarNode('default_repository')
+                ->defaultValue('gearman.repository.default')
             ->end();
 
         return $treeBuilder;

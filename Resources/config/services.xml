@@ -10,11 +10,15 @@
             <argument type="service" id="gearman.client" />
             <argument type="service" id="event_dispatcher" />
         </service>
+
         <service id="gearman.server_collection" class="dmank\gearman\ServerCollection" />
-
-
         <service id="gearman.jobrepository.default" class="dmank\gearman\JobCollection" />
         <service id="gearman.jobrepository" alias="gearman.jobrepository.default" />
+
+        <service id="gearman.monolog.event_subscriber" class="dmank\gearman\event\subscriber\Monolog">
+            <argument type="service" id="monolog.logger.gearman" />
+            <tag name="gearman.event_subscriber" />
+        </service>
 
         <service id="monolog.logger.gearman" parent="monolog.logger_prototype">
             <argument index="0">gearman</argument>

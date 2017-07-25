@@ -8,7 +8,7 @@ class GearmanExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testSingleServer()
     {
-        $config = ['gearman' => ['default_repository' => 'foo.bar', 'servers' => ['default' => ['host' => '127.0.0.1', 'port' => 4730]]]];
+        $config = ['gearman' => ['servers' => ['default' => ['host' => '127.0.0.1', 'port' => 4730]]]];
         $containerBuilder = new ContainerBuilder();
 
         $loader = new GearmanExtension();
