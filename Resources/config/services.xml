@@ -28,18 +28,6 @@
             <tag name="gearman.event_subscriber" />
         </service>
 
-        <service id="gearman.event_subscriber.time_limit" class="dmank\gearman\event\subscriber\MaxRuntime">
-            <argument type="string">%gearman.worker.time_limit%</argument>
-            <argument type="service" id="monolog.logger.gearman" />
-            <tag name="gearman.event_subscriber" />
-        </service>
-
-        <service id="gearman.event_subscriber.memory_limit" class="dmank\gearman\event\subscriber\MemoryLimit">
-            <argument type="string">%gearman.worker.memory_limit%</argument>
-            <argument type="service" id="monolog.logger.gearman" />
-            <tag name="gearman.event_subscriber" />
-        </service>
-
         <service id="monolog.logger.gearman" parent="monolog.logger_prototype">
             <argument index="0">gearman</argument>
             <call method="pushProcessor">

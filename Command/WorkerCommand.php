@@ -1,6 +1,8 @@
 <?php
 namespace Dmank\GearmanBundle\Command;
 
+use dmank\gearman\event\subscriber\MaxRuntime;
+use dmank\gearman\event\subscriber\MemoryLimit;
 use dmank\gearman\ServerCollection;
 use dmank\gearman\Worker;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -16,7 +18,9 @@ class WorkerCommand extends ContainerAwareCommand
             ->setAliases(['run:gearman'])
             ->setDefinition([
                 new InputArgument('jobrepository', InputArgument::OPTIONAL, 'from which repository should the worker get his jobs?', 'default'),
-                new InputArgument('server', InputArgument::OPTIONAL, 'should the worker get his jobs from a specific server?', 'default')
+                new InputArgument('server', InputArgument::OPTIONAL, 'should the worker get his jobs from a specific server?', 'default'),
+                new InputArgument('memory_limit', InputArgument::OPTIONAL, 'how much memory can the worker use before restarting?', ini_get('memory_limit')),
+                new InputArgument('time_limit', InputArgument::OPTIONAL, 'how long should the worker run before restarting?', '+24 hours'),
             ]);
     }
 
@@ -35,9 +39,12 @@ class WorkerCommand extends ContainerAwareCommand
             $jobRepository = $this->getContainer()->get(sprintf('gearman.jobrepository.%s', $input->getArgument('jobrepository')));
         }
 
+        $this->getContainer()->get('gearman.event_dispatcher')
+            ->addSubscriber(new MemoryLimit($input->getArgument('memory_limit'), $this->getContainer()->get('monolog.logger.gearman')));
+        $this->getContainer()->get('gearman.event_dispatcher')
+            ->addSubscriber(new MaxRuntime($input->getArgument('time_limit'), $this->getContainer()->get('monolog.logger.gearman')));
+
         $worker = new Worker($serverCollection, $jobRepository, $this->getContainer()->get('gearman.event_dispatcher'));
         $worker->run();
     }
-
-
 }
