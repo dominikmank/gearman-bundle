@@ -18,10 +18,6 @@ class GearmanExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
-        if ($container->hasDefinition('event_dispatcher')) {
-            $container->getDefinition('gearman.dispatcher')->setArgument(1, new Reference('event_dispatcher'));
-        }
-
         $container->setParameter('gearman.worker.time_limit', $config['worker']['time_limit']);
         $container->setParameter('gearman.worker.memory_limit', $config['worker']['memory_limit']);
 

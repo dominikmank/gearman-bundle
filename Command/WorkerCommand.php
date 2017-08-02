@@ -35,7 +35,7 @@ class WorkerCommand extends ContainerAwareCommand
             $jobRepository = $this->getContainer()->get(sprintf('gearman.jobrepository.%s', $input->getArgument('jobrepository')));
         }
 
-        $worker = new Worker($serverCollection, $jobRepository, $this->getContainer()->get('event_dispatcher'));
+        $worker = new Worker($serverCollection, $jobRepository, $this->getContainer()->get('gearman.event_dispatcher'));
         $worker->run();
     }
 

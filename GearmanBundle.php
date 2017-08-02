@@ -14,6 +14,6 @@ class GearmanBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new GearmanJobPass());
-        $container->addCompilerPass(new RegisterListenersPass('event_dispatcher', 'gearman.event_listener', 'gearman.event_subscriber'));
+        $container->addCompilerPass(new RegisterListenersPass('gearman.event_dispatcher', 'gearman.event_listener', 'gearman.event_subscriber'));
     }
 }

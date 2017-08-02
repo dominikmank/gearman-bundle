@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <container xmlns="http://symfony.com/schema/dic/services">
+    <parameters>
+        <parameter key="gearman.worker.time_limit">+2 hours</parameter>
+        <parameter key="gearman.worker.memory_limit">-1</parameter>
+    </parameters>
     <services>
         <service id="gearman.client" class="dmank\gearman\Client" public="false">
             <argument type="service" id="gearman.server_collection" />
@@ -11,7 +15,9 @@
             <argument type="service" id="gearman.event_dispatcher" />
         </service>
 
-        <service id="gearman.event_dispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher" />
+        <service id="gearman.event_dispatcher" class="Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher">
+            <argument type="service" id="service_container" />
+        </service>
 
         <service id="gearman.server_collection" class="dmank\gearman\ServerCollection" />
         <service id="gearman.jobrepository.default" class="dmank\gearman\JobCollection" />
@@ -36,14 +42,12 @@
 
         <service id="monolog.logger.gearman" parent="monolog.logger_prototype">
             <argument index="0">gearman</argument>
-            <call method="pushHandler">
-                <argument type="service" id="monolog.handler.console" />
-            </call>
             <call method="pushProcessor">
                 <argument type="service">
                     <service class="Monolog\Processor\ProcessIdProcessor" />
                 </argument>
             </call>
+            <tag name="monolog.logger" channel="gearman" />
         </service>
     </services>
 </container>
