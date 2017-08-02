@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <container xmlns="http://symfony.com/schema/dic/services">
-    <parameters>
-        <parameter key="gearman.worker.time_limit">+2 hours</parameter>
-        <parameter key="gearman.worker.memory_limit">-1</parameter>
-    </parameters>
     <services>
         <service id="gearman.client" class="dmank\gearman\Client" public="false">
             <argument type="service" id="gearman.server_collection" />
