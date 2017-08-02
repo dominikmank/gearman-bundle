@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "dmank/gearman": "dev-reworked-jobhandler",
+        "dmank/gearman": "3.*@stable",
         "symfony/dependency-injection": "3.*@stable",
         "symfony/config": "3.*@stable",
         "symfony/monolog-bridge": "3.*@stable",

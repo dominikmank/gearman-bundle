@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b68db4b51e2d6cfbe27e124841268973",
+    "content-hash": "6816b5e18225171ff03f8ebd84c8b9ab",
     "packages": [
         {
             "name": "dmank/gearman",
-            "version": "dev-reworked-jobhandler",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dominikmank/gearman.git",
-                "reference": "303e105cd1b7cf994425452f291dcb99ccdc576c"
+                "reference": "9a0ca803601c29d3f86d1e7244ce5070f1f8fbab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dominikmank/gearman/zipball/303e105cd1b7cf994425452f291dcb99ccdc576c",
-                "reference": "303e105cd1b7cf994425452f291dcb99ccdc576c",
+                "url": "https://api.github.com/repos/dominikmank/gearman/zipball/9a0ca803601c29d3f86d1e7244ce5070f1f8fbab",
+                "reference": "9a0ca803601c29d3f86d1e7244ce5070f1f8fbab",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "php",
                 "worker"
             ],
-            "time": "2017-07-24 12:30:27"
+            "time": "2017-08-02T14:42:22+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2822,7 +2822,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dmank/gearman": 20,
+        "dmank/gearman": 0,
         "symfony/dependency-injection": 0,
         "symfony/config": 0,
         "symfony/monolog-bridge": 0,
