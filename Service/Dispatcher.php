@@ -25,7 +25,7 @@ class Dispatcher implements DispatcherInterface
     }
 
 
-    public function direct($jobName, $workLoad, $priority = DisptacherInterface::PRIORITY_LOW)
+    public function direct($jobName, $workLoad, $priority = DispatcherInterface::PRIORITY_LOW)
     {
         $this->eventDispatcher->dispatch(GearmanEvent::BEFORE_SYNC_EXECUTE, new GearmanDispatchEvent($jobName, $workLoad, $priority));
         $result = $this->client->executeJob($jobName, $workLoad, $priority);
@@ -34,7 +34,7 @@ class Dispatcher implements DispatcherInterface
         return $result;
     }
 
-    public function inBackground($jobName, $workLoad, $priority = DisptacherInterface::PRIORITY_LOW)
+    public function inBackground($jobName, $workLoad, $priority = DispatcherInterface::PRIORITY_LOW)
     {
         $this->eventDispatcher->dispatch(GearmanEvent::BEFORE_ASYNC_EXECUTE, new GearmanDispatchEvent($jobName, $workLoad, $priority));
         $result = $this->client->executeInBackground($jobName, $workLoad, $priority);
