@@ -43,10 +43,26 @@ class GearmanDispatchEvent extends Event
     }
 
     /**
+     * @param array $workload
+     */
+    public function setWorkload(array $workload)
+    {
+        $this->workload = $workload;
+    }
+
+    /**
      * @return mixed
      */
     public function getPriority()
     {
         return $this->priority;
+    }
+
+    /**
+     * @param $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
     }
 }
