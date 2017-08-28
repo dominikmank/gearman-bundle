@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "dmank/gearman",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dominikmank/gearman.git",
-                "reference": "329e1fd822472a8072de31e8e2e332fe0bcee4f7"
+                "reference": "6c247574f01dd0fc0669216d6fd5e6387f268c0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dominikmank/gearman/zipball/329e1fd822472a8072de31e8e2e332fe0bcee4f7",
-                "reference": "329e1fd822472a8072de31e8e2e332fe0bcee4f7",
+                "url": "https://api.github.com/repos/dominikmank/gearman/zipball/6c247574f01dd0fc0669216d6fd5e6387f268c0f",
+                "reference": "6c247574f01dd0fc0669216d6fd5e6387f268c0f",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "php",
                 "worker"
             ],
-            "time": "2017-08-28T09:31:55+00:00"
+            "time": "2017-08-28T10:22:04+00:00"
         },
         {
             "name": "monolog/monolog",
